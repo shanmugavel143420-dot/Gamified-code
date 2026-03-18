@@ -1,0 +1,5 @@
+{
+  "name": "CODEX ARENA",
+  "description": "A high-performance esports-style gamified multiplayer coding platform with 3D UI, real-time matchmaking, and AI-driven skill analysis.",
+  "requestFramePermissions": ["camera", "microphone"]
+}

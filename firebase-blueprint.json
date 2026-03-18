@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stores player profile, stats, and ranking information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "username": { "type": "string" },
+        "uniqueId": { "type": "string" },
+        "avatar": { "type": "string" },
+        "banner": { "type": "string" },
+        "socialLinks": {
+          "type": "object",
+          "properties": {
+            "github": { "type": "string" },
+            "linkedin": { "type": "string" }
+          }
+        },
+        "likes": { "type": "integer" },
+        "xp": { "type": "integer" },
+        "level": { "type": "integer" },
+        "rank": { "type": "string", "enum": ["Bronze", "Silver", "Gold", "Platinum", "Diamond"] },
+        "isVerified": { "type": "boolean" },
+        "skillTags": { "type": "array", "items": { "type": "string" } },
+        "characterTags": { "type": "array", "items": { "type": "string" } },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "wins": { "type": "integer" },
+            "losses": { "type": "integer" },
+            "accuracy": { "type": "number" },
+            "avgSpeed": { "type": "number" }
+          }
+        }
+      },
+      "required": ["uid", "username"]
+    },
+    "Match": {
+      "title": "Match Result",
+      "description": "Stores the result of a completed coding match.",
+      "type": "object",
+      "properties": {
+        "matchId": { "type": "string" },
+        "type": { "type": "string", "enum": ["1v1", "2v2", "4v4", "practice", "self"] },
+        "players": { "type": "array", "items": { "type": "string" } },
+        "winner": { "type": "string" },
+        "problemId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "results": { "type": "object" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents."
+    },
+    "/matches/{matchId}": {
+      "schema": "Match",
+      "description": "Match history records."
+    }
+  }
+}
